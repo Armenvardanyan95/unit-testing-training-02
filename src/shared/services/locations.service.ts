@@ -6,13 +6,8 @@ import { LocalStorageService } from './local-storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class LocationsService {
-  private readonly storage = inject(LocalStorageService);
   private readonly env = inject(Environment);
   private readonly http = inject(HttpClient);
-
-  getMyLocations(): string[] {
-    return this.storage.getItem<string[]>('myLocations');
-  }
 
   searchLocations(search: string) {
     const params = new HttpParams({

@@ -33,7 +33,7 @@ export type CurrentWeather = {
 }
 
 export type Query = {
-  custom_id: string;
+  custom_id?: string;
   q: string;
   location: WeatherLocation;
   current: CurrentWeather;
