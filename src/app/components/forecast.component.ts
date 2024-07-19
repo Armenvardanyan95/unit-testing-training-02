@@ -26,7 +26,7 @@ import { ForecastItemComponent } from './forecast-item.component';
       margin: 1rem;
     }
   `,
-  imports: [MatCardModule, NgClass, ForecastItemComponent],
+  imports: [MatCardModule, ForecastItemComponent],
   standalone: true,
 })
 export class ForecastComponent {

@@ -1,7 +1,7 @@
-import { Component, input } from '@angular/core';
-import { ForecastQuery } from '../../shared/types/forecast.type';
-import { MatCardModule } from '@angular/material/card';
 import { NgClass } from '@angular/common';
+import { Component, input } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { ForecastQuery } from '../../shared/types/forecast.type';
 
 @Component({
   selector: 'app-forecast-item',
@@ -35,17 +35,17 @@ import { NgClass } from '@angular/common';
       min-height: 100px;
       margin: 1rem;
     }
-
+    
     .sunny {
-      background-image: url("public/sunny.jpg");
+      background-image: url("~public/sunny.jpg");
     }
 
     .overcast {
-      background-image: url("public/overcast.png");
+      background-image: url("~public/overcast.png");
     }
 
     .light-rain {
-      background-image: url("public/light-rain.jpg");
+      background-image: url("~public/light-rain.jpg");
     }
   `,
   standalone: true,
