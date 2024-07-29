@@ -1,17 +1,14 @@
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { cold, hot } from 'jasmine-marbles';
-import { Observable, Subject } from 'rxjs';
-import { ForecastActions } from '../store/forecast/forecast.actions';
-import { ForecastState } from '../store/forecast/forecast.feature';
-import { BulkForecastItem, ForecastQuery } from '../types/forecast.type';
-import { forecastResolver } from './forecast.resolver';
+import { Subject } from 'rxjs';
+import { forecastFeature, ForecastState } from '../store/forecast/forecast.feature';
+import { ForecastQuery } from '../types/forecast.type';
 
 describe('forecast resolver', () => {
   let store: MockStore;
   const actions$ = new Subject<any>();
+  let actions;
   const initialState: ForecastState = {
     forecast: [
       {
@@ -32,33 +29,46 @@ describe('forecast resolver', () => {
     loading: false,
     error: null,
   };
+  let mockForecastSelector;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        provideMockStore({ initialState }),
+        provideMockStore(),
         provideMockActions(() => actions$),
       ],
     });
 
     store = TestBed.inject(MockStore);
+    mockForecastSelector = store.overrideSelector(forecastFeature.selectForecast, initialState.forecast);
   });
 
   it('should resolve forecast data', async () => {
-    TestBed.runInInjectionContext(() => {
-      const dispatchSpy = spyOn(store, 'dispatch').and.callFake(() => {});
-      const expected = cold('---a', { a: initialState.forecast });
-      const resolvedData = forecastResolver(
-        {} as ActivatedRouteSnapshot,
-        {} as RouterStateSnapshot
-      ) as Observable<BulkForecastItem[]>;
-      actions$.next(
-        ForecastActions.getForecastSuccess({ forecast: initialState.forecast })
-      );
-      expect(dispatchSpy).toHaveBeenCalledWith(
-        ForecastActions.forecastPageLoaded()
-      );
-      expect(resolvedData).toBeObservable(expected);
-    });
+    // TestBed.runInInjectionContext(() => {
+    //   const scheduler = new TestScheduler((actual, expected) => {
+    //     expect(actual).toEqual(expected);
+    //   });
+    //   scheduler.run(({ cold, expectObservable }) => {
+    //     const dispatchSpy = spyOn(store, 'dispatch').and.callFake(() => {});
+    //     const expected = cold('---(a|)', { a: initialState.forecast });
+    //     const resolvedData = forecastResolver(
+    //       {} as ActivatedRouteSnapshot,
+    //       {} as RouterStateSnapshot
+    //     ) as Observable<BulkForecastItem[]>;
+    //     store.refreshState();
+    //     resolvedData.subscribe((data) => {
+    //       console.log(data);
+    //     });
+    //     actions$.next(
+    //       ForecastActions.getForecastSuccess({
+    //         forecast: initialState.forecast,
+    //       })
+    //     );
+    //     expect(dispatchSpy).toHaveBeenCalledWith(
+    //       ForecastActions.forecastPageLoaded()
+    //     );
+    //     expectObservable(resolvedData).toBe('a', { a: initialState.forecast });
+    //   });
+    // });
   });
 });

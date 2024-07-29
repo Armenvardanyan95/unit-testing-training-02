@@ -3,7 +3,7 @@ import { ForecastActions } from './forecast.actions';
 import { forecastFeature, ForecastState } from './forecast.feature';
 
 describe('forecast feature', () => {
-  let reducer = forecastFeature.reducer;
+  const reducer = forecastFeature.reducer;
   const initialState: ForecastState = {
     forecast: [],
     loading: false,
