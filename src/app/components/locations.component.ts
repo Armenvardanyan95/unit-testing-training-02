@@ -46,7 +46,7 @@ import { WeatherLocation } from '../../shared/types/location.type';
             <ng-container matColumnDef="action">
               <th mat-header-cell *matHeaderCellDef>Action</th>
               <td mat-cell *matCellDef="let element">
-                @if (element.favorite) {
+                @if (!element.favorite) {
                 <button
                   mat-icon-button
                   matTooltip="Add to favorites"
