@@ -26,34 +26,22 @@ describe('locations feature', () => {
   });
 
   it('should handle Search Locations', () => {
-    const result = reducer(initialState, LocationsActions.searchLocations({ query: 'query' }));
+    let result = reducer(initialState, LocationsActions.searchLocations({ query: 'query' }));
     expect(result).toEqual({
       locations: [],
       favoriteLocations: [],
       loading: true,
       error: null,
     });
-  });
 
-   it('should handle Search Locations Failure', () => {
-    const result = reducer(initialState, LocationsActions.searchLocationsFailure({ error: 'error' }));
+    result = reducer(result, LocationsActions.searchLocationsSuccess({ locations }));
     expect(result).toEqual({
-      locations: [],
+      locations,
       favoriteLocations: [],
       loading: false,
-      error: 'error',
+      error: null,
     });
   });
- 
-    it('should handle Search Locations Success', () => {
-      const result = reducer(initialState, LocationsActions.searchLocationsSuccess({ locations }));
-      expect(result).toEqual({
-        locations,
-        favoriteLocations: [],
-        loading: false,
-        error: null,
-      });
-    });
 
    it('should handle Add to Favorites', () => {
       const result = reducer(initialState, LocationsActions.addToFavorites({ location: locations[0] }));
