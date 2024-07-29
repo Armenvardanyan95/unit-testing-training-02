@@ -18,7 +18,7 @@ import { ForecastQuery } from '../../shared/types/forecast.type';
       <mat-card-content>
         <p>
           <span>{{ item().current.condition.text }}</span> -
-          <span>{{ item().current.temp_c }}</span>
+          <span>{{ item().current.temp_c }}<sup>°</sup>C</span>
         </p>
       </mat-card-content>
     </mat-card>
