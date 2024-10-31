@@ -2,7 +2,7 @@ import { createFeature, createReducer, on } from "@ngrx/store";
 import { BulkForecastItem } from "../../types/forecast.type";
 import { ForecastActions } from "./forecast.actions";
 
-export type ForecastState = { 
+export type ForecastState = {
   forecast: BulkForecastItem[];
   loading: boolean;
   error: string | null;

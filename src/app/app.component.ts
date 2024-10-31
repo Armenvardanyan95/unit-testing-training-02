@@ -15,7 +15,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatIconModule,
     RouterLink,
     MatTooltipModule,
-  ], 
+  ],
 })
 export class AppComponent {
   title = 'unit-testing-training-02';

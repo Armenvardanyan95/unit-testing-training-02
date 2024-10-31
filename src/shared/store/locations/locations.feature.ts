@@ -27,6 +27,7 @@ const locationsReducer = createReducer<LocationsState>(
   })),
   on(LocationsActions.searchLocationsSuccess, (state, { locations }) => ({
     ...state,
+    loading: false,
     locations,
   })),
   on(LocationsActions.addToFavorites, (state, { location }) => ({

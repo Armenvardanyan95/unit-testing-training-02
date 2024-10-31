@@ -7,7 +7,7 @@ import { ForecastActions } from "../store/forecast/forecast.actions";
 import { forecastFeature } from "../store/forecast/forecast.feature";
 import { BulkForecastItem } from "../types/forecast.type";
 
-export const forecastResolver: ResolveFn<BulkForecastItem[]> = () => { 
+export const forecastResolver: ResolveFn<BulkForecastItem[]> = () => {
   const store = inject(Store);
   const actions = inject(Actions);
   store.dispatch(ForecastActions.forecastPageLoaded());
